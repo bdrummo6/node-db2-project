@@ -44,4 +44,35 @@ router.post('/', async (req, res, next) => {
 	}
 })
 
+// Update a car with the specified id
+router.put('/:id', async (req, res, next) => {
+	try {
+		const payload = {
+			VIN: req.body.VIN,
+			Make: req.body.Make,
+			Model: req.body.Model,
+			Mileage: req.body.Mileage,
+			TransmissionType: req.body.TransmissionType,
+			TitleStatus: req.body.TitleStatus
+		}
+
+		await db('cars').update(payload).where('id', req.params.id)
+		const car = await db.first('*').from('cars').where('id', req.params.id)
+		res.json(car)
+
+	} catch (err) {
+		next(err)
+	}
+})
+
+// Deletes a car with the specified id
+router.delete('/:id', async (req, res, next) => {
+	try {
+		await db('cars').where('id', req.params.id).del()
+		res.status(204).end()
+	} catch (err) {
+		next(err)
+	}
+})
+
 module.exports = router;
