@@ -7,7 +7,7 @@ const server = express();
 
 server.use(express.json());
 
-server.use('/api/', welcomeRouter);
+server.use('/api', welcomeRouter);
 server.use('/api/cars', carsRouter);
 
 module.exports = server;

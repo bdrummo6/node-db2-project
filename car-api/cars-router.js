@@ -13,4 +13,14 @@ router.get('/', async (req, res) => {
 	}
 })
 
+// Returns the Car with the specified id
+router.get('/:id', async (req, res) => {
+	try {
+		const car  = await db('cars').where('id', req.params.id).limit(1);
+		res.json(car)
+	} catch (err) {
+		next(err)
+	}
+})
+
 module.exports = router;
