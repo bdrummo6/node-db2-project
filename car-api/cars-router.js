@@ -28,13 +28,14 @@ router.post('/', async (req, res, next) => {
 
 	try {
 		const payload = {
-			VIN: req.body.VIN,
-			Make: req.body.Make,
-			Model: req.body.Model,
-			Mileage: req.body.Mileage,
-			TransmissionType: req.body.TransmissionType,
-			TitleStatus: req.body.TitleStatus
+			vin: req.body.vin,
+			make: req.body.make,
+			model: req.body.model,
+			mileage: req.body.mileage,
+			transmission: req.body.transmission,
+			title: req.body.title
 		}
+
 		const [carID] = await db('cars').insert(payload);
 		const car = await db.first('*').from('cars').where('id', carID);
 
@@ -48,12 +49,12 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
 	try {
 		const payload = {
-			VIN: req.body.VIN,
-			Make: req.body.Make,
-			Model: req.body.Model,
-			Mileage: req.body.Mileage,
-			TransmissionType: req.body.TransmissionType,
-			TitleStatus: req.body.TitleStatus
+			vin: req.body.vin,
+			make: req.body.make,
+			model: req.body.model,
+			mileage: req.body.mileage,
+			transmission: req.body.transmission,
+			title: req.body.title
 		}
 
 		await db('cars').update(payload).where('id', req.params.id)
