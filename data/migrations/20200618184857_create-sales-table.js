@@ -1,6 +1,6 @@
 
-exports.up = function(knex) {
-	return knex.schema.createTable('sales', tbl => {
+exports.up = async function(knex) {
+	await knex.schema.createTable('sales', tbl => {
 		tbl.increments();
 		tbl.integer('car_id')
 			.unsigned()
@@ -12,8 +12,8 @@ exports.up = function(knex) {
 		tbl.date('sale_date', 128).notNullable();
 		tbl.float('price', 128).notNullable();
 	})
-};
+}
 
-exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('sales');
-};
+exports.down = async function(knex) {
+	await knex.schema.dropTableIfExists('sales')
+}
