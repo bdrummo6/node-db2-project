@@ -1,7 +1,7 @@
 const express = require('express');
 
-const welcomeRouter = require('./car-api/welcome-router');
-const carsRouter = require('./car-api/cars-router');
+const welcomeRouter = require('./car-api/welcome/welcome-router');
+const carsRouter = require('./car-api/cars/cars-router');
 
 const server = express();
 
